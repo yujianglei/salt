@@ -109,12 +109,28 @@ rpm_install(){
   done
 }
 
-auto_start(){
-  local msg
-  systemctl  enable salt-minion.service >>/dev/null 2>&1
+config(){
+  local master
+  local id_desc
+  master='10.10.21.80'
+  id_desc=`hostname`
+  echo "master: $master" >>/etc/salt/minion && \
+  echo "id: ${id_desc}" >>/etc/salt/minion
   if [ $? != 0 ]
   then
-    msg="ERROR,auto start salt-minion.service."
+    msg="ERROR,Configure salt-minion."
+    err $msg
+  fi
+}
+
+
+auto_start(){
+  local msg
+  systemctl  enable salt-minion.service >>/dev/null 2>&1 && \
+  systemctl  start  salt-minion.service
+  if [ $? != 0 ]
+  then
+    msg="ERROR,auto start  or start salt-minion.service."
     err $msg
   fi
 }
@@ -125,4 +141,4 @@ dir
 unpack
 base_install
 rpm_install
-
+config
