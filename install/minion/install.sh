@@ -133,7 +133,6 @@ dir(){
 }
 
 unpack(){
-  dir()
   local msg
   tar xf $FILENAME >/dev/null 2>&1
   if [ $? != 0 ]
@@ -235,6 +234,7 @@ auto_start(){
 main(){
   user
   def_var
+  dir
   unpack
   base_install
   salt_install
