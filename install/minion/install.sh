@@ -124,6 +124,10 @@ user(){
 }
 
 dir(){
+  echo $FILENAME
+  echo $FILENAME
+  echo $FILENAME
+  echo $FILENAME
   if [ ! -f `pwd`/$FILENAME ]
   then
     local msg
@@ -150,11 +154,17 @@ base_install(){
   res=$(def_base_soft)
   for soft in ${res[@]}
   do
-    yum install $soft -y >>/dev/null 2>&1
+    rpm -q $soft  >>/dev/null 2>&1
     if [ $? != 0 ]
     then
-      msg="ERROR,Install $soft."
-      err $msg
+        yum install $soft -y >>/dev/null 2>&1
+        if [ $? != 0 ]
+            then
+                msg="ERROR,Install $soft."
+                err $msg
+        fi
+    else
+      yum  update $soft -y >>/dev/null 2>&1
     fi
   done
 }
@@ -227,8 +237,8 @@ auto_start(){
 
 main(){
   user
-  dir
   def_var
+  dir
   base_install
   salt_install
   config
