@@ -97,6 +97,8 @@ def_salt_soft(){
           python-tornado-4.2.1-1.el6.x86_64.rpm
           PyYAML-3.11-1.el6.x86_64.rpm
           zeromq-4.0.5-4.el6.x86_64.rpm
+          python-zmq-14.5.0-2.el6.x86_64.rpm
+          salt-2016.3.3-1.el6.noarch.rpm
           salt-minion-2016.3.3-1.el6.noarch.rpm
     )
   fi
