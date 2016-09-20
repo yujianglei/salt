@@ -185,7 +185,7 @@ salt_install(){
   for pkg in ${res[@]}
   do
     soft=`echo  $pkg| awk -F ".rpm" '{print $1}'`
-    /usr/bin/rpm -q  $soft >>/dev/null 2>&1
+    rpm -q  $soft >>/dev/null 2>&1
     if [ $? != 0 ]
     then
       yum install -y $pkg >> /dev/null 2>&1
