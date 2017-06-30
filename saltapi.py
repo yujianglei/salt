@@ -6,17 +6,13 @@ import json
 import sys
 
 class SaltApi( object ):
-
     _token_id = ''
     def __init__(self,username,password,url):
-
-
         self._username = username
         self._password = password
         self._url = url.strip()
 
     def post(self, values, headers, prefix=""):
-
         values = urllib.urlencode(values)
         url = self._url + prefix
         req = urllib2.Request(url, values, headers)
@@ -25,27 +21,20 @@ class SaltApi( object ):
         except Exception, e:
             print e
         res_data = res.read()
-
         content = json.loads(res_data)
-
         return content
 
     def token_id(self):
-
         logger.setLevel(logging.INFO)
-
         _headers = {
             "Accept": "application/json",
         }
-
         _values = {
             "username": self._username,
             "password": self._password,
             "eauth": "pam"
         }
-
         content = self.post(values=_values, headers=_headers, prefix="login")
-
         try:
             self._token_id = content["return"][0]["token"]
         except KeyError:
@@ -53,9 +42,7 @@ class SaltApi( object ):
         return self._token_id
 
     def key_list(self):
-
         key_info = {}
-
         self.token_id()
         _values = {
             "client": "wheel",
@@ -67,7 +54,6 @@ class SaltApi( object ):
         }
         _data = urllib.urlencode(_values)
         _req = urllib2.Request(self._url, _data, _headers)
-
         try:
             _res = urllib2.urlopen(_req)
         except Exception, e:
@@ -77,21 +63,17 @@ class SaltApi( object ):
         _res_data = _res.read()
 
         _json = json.loads(_res_data)
-
         items = [
             'minions_rejected',
             'minions_denied',
             'minions_pre',
             'minions'
         ]
-
         for item in items:
             key_info[item] = _json['return'][0]['data']['return'][item]
-
         return key_info
 
     def deploy_module(self, tgt='', expr_form=''):
-
         self.token_id()
         _headers = {
             "Accept": "application/json",
