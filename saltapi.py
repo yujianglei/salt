@@ -90,7 +90,7 @@ class SaltApi( object ):
         content = self.post(values=_values, headers=_headers, prefix="")
         return content
     
-    def exec_command(self,tag,arg,expr_form='list'):
+    def exec_command(self,tgt,arg,expr_form='list'):
         self.token_id()
         _headers = {
             "Accept": "application/json",
