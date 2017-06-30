@@ -89,3 +89,22 @@ class SaltApi( object ):
         print _values
         content = self.post(values=_values, headers=_headers, prefix="")
         return content
+    
+    def exec_command(self,tag,arg,expr_form='list'):
+        self.token_id()
+        _headers = {
+            "Accept": "application/json",
+            "X-Auth-Token": self._token_id
+        }
+        _values = {
+            "client": 'local',
+            "tgt": tgt,
+            "fun": "cmd.run",
+            "arg": arg,
+            "expr_form": expr_form
+        }
+        print _values
+        content = self.post(values=_values, headers=_headers, prefix="")
+        return content
+        
+        
