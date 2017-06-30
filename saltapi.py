@@ -73,7 +73,7 @@ class SaltApi( object ):
             key_info[item] = _json['return'][0]['data']['return'][item]
         return key_info
 
-    def deploy_module(self, tgt='', expr_form=''):
+    def deploy_module(self, tgt='', arg='', expr_form=''):
         self.token_id()
         _headers = {
             "Accept": "application/json",
@@ -83,7 +83,7 @@ class SaltApi( object ):
             "client": 'local',
             "tgt": tgt,
             "fun": "state.sls",
-            "arg": "zabbix_agent",
+            "arg": arg,
             "expr_form": expr_form
         }
         print _values
