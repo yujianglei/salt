@@ -1,10 +1,12 @@
 # SaltStack API 
+====
 ## Tables Of Contents
+====================
 
- - Batch Commands
- - Run Batch Tasks
+ - [Run Batch Commands](#commands)
+ - [Run Batch Tasks](#tasks)
 
-## Run Batch Commands
+##Commands
 ```python
 from salt import SaltApi
 A = SaltApi(user,pass,url)
@@ -14,10 +16,12 @@ result  = A.exec_command(tgt,arg="ls /home/")
 return result
 ```
 
-## Run Batch Tasks 
+##Tasks 
+=============
 
 ```python
 tgt = ['1.1.1.1','1.1.1.2','1.1.1.3']
 result = A.deploy_module(tgt,arg='zabbix')
 return result
 ```
+
