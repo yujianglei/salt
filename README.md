@@ -1,12 +1,6 @@
 # SaltStack API 
-====
-## Tables Of Contents
-====================
 
- - [Run Batch Commands](#commands)
- - [Run Batch Tasks](#tasks)
-
-##Commands
+## Run Batch Commands
 ```python
 from salt import SaltApi
 A = SaltApi(user,pass,url)
@@ -16,7 +10,8 @@ result  = A.exec_command(tgt,arg="ls /home/")
 return result
 ```
 
-##Tasks 
+
+## Run Batch Tasks 
 =============
 
 ```python
