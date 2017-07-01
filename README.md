@@ -1,6 +1,8 @@
 # SaltStack API 
 
-## Run Batch Commands
+
+## Usage
+### Run Batch Commands
 ```python
 from salt import SaltApi
 A = SaltApi(user,pass,url)
@@ -11,8 +13,7 @@ return result
 ```
 
 
-## Run Batch Tasks 
-=============
+### Run Batch Tasks 
 
 ```python
 tgt = ['1.1.1.1','1.1.1.2','1.1.1.3']
